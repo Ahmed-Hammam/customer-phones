@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+</head>
+
+<body>
+<span th:if="${errorMessage}"  th:text="${errorMessage}">Error</span>
+
+	<div class="container">
+		<h2 align="center">Customers List</h2>
+		
+		<form th:action="@{/search}" method="get">
+			<!-- <select>
+				<option value="default">Select a country</option>
+				<option th:each="${countries}" th:text="${countries}"  th:value="${country}"/>
+			</select> --> 
+			<select name="country">
+				<option value="">Select a country</option>
+				<option th:each="country : ${countries}" th:text="${country}" />
+			</select>
+
+			<!-- <input type="text" name="country" th:value="${country}" placeholder="Find by Country" size="20"> --> 
+			<input type="text" name="code" th:value="${code}" placeholder="Find by Country Code"size="20"> 
+			<input type="text" name="phone" th:value="${phone}" placeholder="Find by Phone" size="20">
+			<button type="submit" class="btn btn-info">Search</button>
+			<button type="submit" class="btn btn-info" >Reset</button>
+		</form>
+
+<!-- 		<form action="">
+			<input type="submit" value="Reset" />
+		</form> -->
+
+
+		<div class="row">
+			<div class="col-lg-10 mt-5 mb-5">
+				<table id="example" class="table table-bordered" style="width: 100%">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Country</th>
+							<th>Code</th>
+							<th>Phone</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="customer : ${customers}">
+							<td th:text="${customer.customerName}">Name</td>
+							<td th:text="${customer.country}">Country</td>
+							<td th:text="${customer.countryCode}">Country Code</td>
+							<td th:text="${customer.phone}">Phone</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
